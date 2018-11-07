@@ -43,7 +43,7 @@ class EntityServiceImpl implements EntityService {
 	}
 
 	@Override
-	public Optional<Entity> byName(final String name) {
+	public Iterable<Entity> byName(final String name) {
 		return repository.findByName(name);
 	}
 

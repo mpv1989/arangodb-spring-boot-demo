@@ -21,6 +21,6 @@ public interface EntityService {
 
 	Iterable<Entity> getAll();
 
-	Optional<Entity> byName(String name);
+	Iterable<Entity> byName(String name);
 
 }

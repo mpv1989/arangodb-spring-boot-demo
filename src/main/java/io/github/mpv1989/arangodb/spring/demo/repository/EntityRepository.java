@@ -3,8 +3,6 @@
  */
 package io.github.mpv1989.arangodb.spring.demo.repository;
 
-import java.util.Optional;
-
 import com.arangodb.springframework.repository.ArangoRepository;
 
 import io.github.mpv1989.arangodb.spring.demo.domain.Entity;
@@ -15,6 +13,6 @@ import io.github.mpv1989.arangodb.spring.demo.domain.Entity;
  */
 public interface EntityRepository extends ArangoRepository<Entity, String> {
 
-	Optional<Entity> findByName(String name);
+	Iterable<Entity> findByName(String name);
 
 }

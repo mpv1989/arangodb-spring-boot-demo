@@ -4,6 +4,7 @@
 package io.github.mpv1989.arangodb.spring.demo.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,13 +45,8 @@ class EntityController {
 	}
 
 	@GetMapping
-	public Iterable<Entity> getAll() {
-		return service.getAll();
-	}
-
-	@GetMapping("/search")
-	public ResponseEntity<Entity> byName(@RequestParam("name") final String name) {
-		return service.byName(name).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+	public Iterable<Entity> find(@RequestParam(name = "name", required = false) final String name) {
+		return StringUtils.hasLength(name) ? service.byName(name) : service.getAll();
 	}
 
 }
