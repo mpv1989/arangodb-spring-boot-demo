@@ -37,4 +37,14 @@ class EntityServiceImpl implements EntityService {
 		repository.deleteById(id);
 	}
 
+	@Override
+	public Iterable<Entity> getAll() {
+		return repository.findAll();
+	}
+
+	@Override
+	public Optional<Entity> byName(final String name) {
+		return repository.findByName(name);
+	}
+
 }

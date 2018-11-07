@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.mpv1989.arangodb.spring.demo.domain.Entity;
@@ -40,6 +41,16 @@ class EntityController {
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable final String id) {
 		service.delete(id);
+	}
+
+	@GetMapping
+	public Iterable<Entity> getAll() {
+		return service.getAll();
+	}
+
+	@GetMapping("/search")
+	public ResponseEntity<Entity> byName(@RequestParam("name") final String name) {
+		return service.byName(name).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 
 }

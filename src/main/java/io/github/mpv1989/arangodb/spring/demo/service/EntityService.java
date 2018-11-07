@@ -19,4 +19,8 @@ public interface EntityService {
 
 	void delete(String id);
 
+	Iterable<Entity> getAll();
+
+	Optional<Entity> byName(String name);
+
 }
